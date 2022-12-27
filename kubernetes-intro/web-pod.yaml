@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: web
+  labels:
+    app: web
+spec:
+  containers:
+    - image: zlayasova/web:1.0
+      name: web
+      volumeMounts:
+        - name: app
+          mountPath: /app
+  initContainers:
+    - image: busybox:1.31.0
+      name: init-web
+      command: ['sh', '-c', 'wget -O- https://tinyurl.com/otus-k8s-intro | sh']
+      volumeMounts:
+        - name: app
+          mountPath: /app
+  volumes:
+    - name: app
+      emptyDir: {}
