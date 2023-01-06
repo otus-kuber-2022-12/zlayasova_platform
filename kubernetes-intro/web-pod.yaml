@@ -6,7 +6,7 @@ metadata:
     app: web
 spec:
   containers:
-    - image: zlayasova/web:1.0
+    - image: zlayasova/web:1.2
       name: web
       volumeMounts:
         - name: app
