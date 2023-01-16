@@ -5,19 +5,19 @@ metadata:
   labels:
     app: web
 spec:
+  volumes:
+    - name: app
+      emptyDir: {}
   containers:
-    - image: zlayasova/web:1.0
-      name: web
+    - name: web
+      image: zlayasova/web:1.0
       volumeMounts:
         - name: app
           mountPath: /app
   initContainers:
-    - image: busybox:1.31.0
-      name: init-web
+    - name: init-web
+      image: busybox:1.36.0
       command: ['sh', '-c', 'wget -O- https://tinyurl.com/otus-k8s-intro | sh']
       volumeMounts:
         - name: app
           mountPath: /app
-  volumes:
-    - name: app
-      emptyDir: {}
