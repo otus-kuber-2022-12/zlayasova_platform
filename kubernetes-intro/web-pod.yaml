@@ -11,6 +11,12 @@ spec:
   containers:
     - name: web
       image: zlayasova/web:1.0
+      livenessProbe:
+        tcpSocket: { port: 8000 }
+      readinessProbe:
+        httpGet:
+          path: /index.html
+          port: 80
       volumeMounts:
         - name: app
           mountPath: /app
