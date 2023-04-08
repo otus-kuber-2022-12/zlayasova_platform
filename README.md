@@ -39,3 +39,15 @@ Homework №5
 Homework №6
 Основное задание:
 Созданы манифесты helm-charts для развертывания микросервисов в кластере
+
+Homework №7
+Основное задание:
+Создан манифест для CDR mysqls.otus.homework. Так же созданы манифесты для контроллера
+Вывод "kubectl exec -it $MYSQLPOD -- mysql -potuspassword -e "select * from test;" otus-database"
+mysql: [Warning] Using a password on the command line interface can be insecure.
++----+------------+
+| id | name       |
++----+------------+
+|  1 | some data  |
+|  2 | some data2 |
++----+------------+
