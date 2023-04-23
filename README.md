@@ -51,3 +51,7 @@ mysql: [Warning] Using a password on the command line interface can be insecure.
 |  1 | some data  |
 |  2 | some data2 |
 +----+------------+
+
+Homework №8
+Основное задание:
+Созданы манифесты для приложения и подключения его к системе мониторинга
