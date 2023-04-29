@@ -1,0 +1,16 @@
+loki:
+  tolerations:
+    - key: node-role
+      operator: Equal
+      value: infra
+      effect: NoSchedule
+  nodeSelector: &nodeSelector
+    yandex.cloud/node-group-id: catvvv9qm3dsmuvarup0
+  querier:
+    replicas: 1
+  extraVolumes:
+    - name: bolt-db
+      emptyDir: {}
+  extraVolumeMounts:
+    - name: bolt-db
+      mountPath: /var/loki

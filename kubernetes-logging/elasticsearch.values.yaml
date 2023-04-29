@@ -1,0 +1,10 @@
+master:
+  replicaCount: 3
+  nodeSelector: &nodeSelector
+    yandex.cloud/node-group-id: catvvv9qm3dsmuvarup0
+
+  tolerations: &tolerations
+    - key: node-role
+      operator: Equal
+      value: infra
+      effect: NoSchedule
