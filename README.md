@@ -59,3 +59,28 @@ Homework №8
 Homework №9
 Основное задание:
 Создан кластер с двумя разными группами узлов. Создан кластер ELK для сбора логов. Так же был установлен Loki для сбора логов
+
+Homework №10
+Основное задание:
+Создан кластер k8s. Создан репозиторий в gitlab. Был подключен flux для отслеживания версий сервисов в registry.
+Так же был подключен istio и flagger и настроен canary deployment
+
+kubectl describe canary frontend -n microservices-demo
+
+Type     Reason  Age                 From     Message
+  ----     ------  ----                ----     -------
+Warning  Synced  20m                 flagger  frontend-primary.microservices-demo not ready: waiting for rollout to finish: observed deployment generation less than desired generation
+Normal   Synced  20m (x2 over 20m)   flagger  all the metrics providers are available!
+Normal   Synced  20m                 flagger  Initialization done! frontend.microservices-demo
+Normal   Synced  17m                 flagger  Starting canary analysis for frontend.microservices-demo
+Warning  Synced  17m                 flagger  canary deployment frontend.microservices-demo not ready: waiting for rollout to finish: 1 old replicas are pending termination
+Normal   Synced  13m (x2 over 18m)   flagger  New revision detected! Scaling up frontend.microservices-demo
+Normal   Synced  12m (x2 over 17m)   flagger  Advance frontend.microservices-demo canary weight 10
+Normal   Synced  12m (x2 over 16m)   flagger  Advance frontend.microservices-demo canary weight 20
+Normal   Synced  11m (x2 over 16m)   flagger  Advance frontend.microservices-demo canary weight 30
+Normal   Synced  11m (x2 over 15m)   flagger  Advance frontend.microservices-demo canary weight 40
+Normal   Synced  10m (x2 over 15m)   flagger  Advance frontend.microservices-demo canary weight 50
+Normal   Synced  10m                 flagger  Copying frontend.microservices-demo template spec to frontend-primary.microservices-demo
+Normal   Synced  9m3s (x6 over 14m)  flagger  (combined from similar events): Promotion completed! Scaling down frontend.microservices-demo
+
+
