@@ -270,3 +270,38 @@ f7p4d4IWdYD4+g2gmB/7asqsl1O9YzTaLoy+jJidpHfNhGuCe0U=
 -----END RSA PRIVATE KEY-----
 private_key_type    rsa
 serial_number       27:3e:2d:68:9e:fc:80:02:1a:34:c7:9b:f9:0e:b7:16:d1:38:f5:8a
+
+Homework №12
+Основное задание:
+Установлен CSI драйвер. Протестирован функционал снапшотов
+
+kubectl get pod
+NAME                   READY   STATUS    RESTARTS   AGE
+csi-hostpath-socat-0   1/1     Running   0          77m
+csi-hostpathplugin-0   8/8     Running   0          77m
+csi-storage-pod        1/1     Running   0          9s
+
+kubectl exec csi-storage-pod -- touch /data/test.txt
+kubectl exec csi-storage-pod -- ls /data/
+test.txt
+
+kubectl delete -f hw/csi-pvc.yaml -f hw/storage-pod.yaml
+persistentvolumeclaim "csi-storage" deleted
+pod "csi-storage-pod" deleted
+
+kubectl apply -f hw/csi-restore.yaml
+persistentvolumeclaim/hpvc-restore created
+
+
+kubectl apply -f hw/storage-pod.yaml
+pod/csi-storage-pod created
+
+
+kubectl get pod
+NAME                   READY   STATUS    RESTARTS   AGE
+csi-hostpath-socat-0   1/1     Running   0          109m
+csi-hostpathplugin-0   8/8     Running   0          109m
+csi-storage-pod        1/1     Running   0          6s
+
+kubectl exec csi-storage-pod -- ls /data/
+test.txt
