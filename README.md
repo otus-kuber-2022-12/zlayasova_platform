@@ -310,6 +310,7 @@ Homework №13
 
 Основное задание:
 
+
 На практике познакомились с инструментами для дебага и тестирования
 
 kubectl describe netperf.app.example.com/example
@@ -395,3 +396,6 @@ Normal  Created    67s (x2 over 3m17s)  kubelet            Created container net
 Normal  Started    67s (x2 over 3m17s)  kubelet            Started container netperf-client-40ac6c89ec9d
 Warning PacketDrop 65s       kube-iptables-tailer  Packet dropped when sending traffic to netperf-server-40ac6c89ec9d (192.168.162.127)
 ...  
+
+В данном задании создали кластер kubernetes с помощью инструментов kubeadm и kubespray. Обновили одну из нод в кластере
+
