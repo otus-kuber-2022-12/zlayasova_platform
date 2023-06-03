@@ -305,3 +305,9 @@ csi-storage-pod        1/1     Running   0          6s
 
 kubectl exec csi-storage-pod -- ls /data/
 test.txt
+
+Homework №13
+
+Основное задание:
+
+В данном задании создали кластер kubernetes с помощью инструментов kubeadm и kubespray. Обновили одну из нод в кластере

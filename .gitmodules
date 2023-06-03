@@ -10,3 +10,6 @@
 [submodule "kubernetes-storage/kubernetes-csi/csi-driver-host-path"]
 	path = kubernetes-storage/kubernetes-csi/csi-driver-host-path
 	url = https://github.com/kubernetes-csi/csi-driver-host-path.git
+[submodule "kubernetes-production/kubespray"]
+	path = kubernetes-production/kubespray
+	url = https://github.com/kubernetes-sigs/kubespray.git
