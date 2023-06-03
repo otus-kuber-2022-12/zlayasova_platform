@@ -310,4 +310,92 @@ Homework №13
 
 Основное задание:
 
+
+На практике познакомились с инструментами для дебага и тестирования
+
+kubectl describe netperf.app.example.com/example
+
+Name:         example
+Namespace:    default
+Labels:       <none>
+Annotations:  <none>
+API Version:  app.example.com/v1alpha1
+Kind:         Netperf
+Metadata:
+apiVersion: crd.projectcalico.org/v1
+Creation Timestamp:  2023-05-27T22:39:49Z
+Generation:          4
+Managed Fields:
+API Version:  app.example.com/v1alpha1
+Fields Type:  FieldsV1
+fieldsV1:
+f:metadata:
+f:annotations:
+.:
+f:kubectl.kubernetes.io/last-applied-configuration:
+f:spec:
+.:
+f:clientNode:
+f:serverNode:
+Manager:      kubectl-client-side-apply
+Operation:    Update
+Time:         2023-05-27T22:39:49Z
+API Version:  app.example.com/v1alpha1
+Fields Type:  FieldsV1
+fieldsV1:
+f:status:
+.:
+f:clientPod:
+f:serverPod:
+f:speedBitsPerSec:
+f:status:
+Manager:         netperf-operator
+Operation:       Update
+Time:            2023-05-27T22:39:49Z
+Resource Version:  2966
+Self Link:         /apis/app.example.com/v1alpha1/namespaces/default/netperfs/example
+UID:               b3d682d2-f6d6-4391-8ef5-507f04eb3d46
+Spec:
+Client Node:  kind-worker3
+Server Node:  kind-worker
+Status:
+Client Pod:          netperf-client-507f04eb3d46
+Server Pod:          netperf-server-507f04eb3d46
+Speed Bits Per Sec:  3762.69
+Status:              Done
+Events:                <none>
+
+kubectl apply -f ./kit/netperf-calico-policy.yaml
+kubectl describe netperf.app.example.com/example
+
+Spec:
+Client Node:  kind-worker3
+Server Node:  kind-worker
+Status:
+Client Pod:          netperf-client-9a0a82258803
+Server Pod:          netperf-server-9a0a82258803
+Speed Bits Per Sec:  0
+Status:              Started test
+Events:                <none>
+
+11   660 DROP       all  --  *      *       0.0.0.0/0            0.0.0.0/0            /* cali:He8TRqGPuUw3VGwk */
+14   840 LOG        all  --  *      *       0.0.0.0/0            0.0.0.0/0            /* cali:B30DykF1ntLW86eD */ LOG flags 0 level 5 prefix "calico-packet: "
+
+Normal   SuccessfulCreate  8s    daemonset-controller  Created pod: kube-iptables-tailer-wwt5q
+Normal   SuccessfulCreate  8s    daemonset-controller  Created pod: kube-iptables-tailer-zgt27
+Normal   SuccessfulCreate  8s    daemonset-controller  Created pod: kube-iptables-tailer-6zgh9
+
+kubectl describe pod netperf-client-40ac6c89ec9d
+
+Events:
+Type    Reason     Age                  From               Message
+  ----    ------     ----                 ----               -------
+Normal  Scheduled  3m18s                default-scheduler  Successfully assigned default/netperf-client-40ac6c89ec9d to kind-worker3
+Normal  Pulled     67s (x2 over 3m17s)  kubelet            Container image "tailoredcloud/netperf:v2.7" already present on machine
+Normal  Created    67s (x2 over 3m17s)  kubelet            Created container netperf-client-40ac6c89ec9d
+Normal  Started    67s (x2 over 3m17s)  kubelet            Started container netperf-client-40ac6c89ec9d
+Warning PacketDrop 65s       kube-iptables-tailer  Packet dropped when sending traffic to netperf-server-40ac6c89ec9d (192.168.162.127)
+...  
+
 В данном задании создали кластер kubernetes с помощью инструментов kubeadm и kubespray. Обновили одну из нод в кластере
+
